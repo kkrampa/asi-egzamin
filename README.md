@@ -1,1 +1,1 @@
-# tsw-egzamin
+# asi-egzamin
