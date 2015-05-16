@@ -1,0 +1,20 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to the asi-egzamin</h1>
+
+    <h2>
+      Empty for now.
+    </h2>
+
+    <%= link_to "Sign up here!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+
+  <%= link_to image_tag("http://a1.dspnimg.com/data/l/5986954294_mWdSPOnQ_l.jpg", alt: "asi=egzamin logo") %>
+<% end %>
