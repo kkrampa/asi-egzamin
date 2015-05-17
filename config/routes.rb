@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  get "contacts/:id/send_sms" => 'contacts#send_sms', :as => "send_sms_contact"
+  post "contacts/sms_sender" => 'contacts#sms_sender', :as => "sms_sender_contact"
   resources :contacts
   resources :users
   resources :account_activations, only: [:edit]

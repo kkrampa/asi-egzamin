@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy, :send_sms]
   before_action :logged_in_user
 
   # GET /contacts
@@ -11,6 +11,13 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+  #   require 'rest-client'
+  #
+  #   RestClient.post "smsgateway.me/api/v3/messages/send", { 'email' => 'wojtark@vp.pl',
+  # 'password' => 'lubieplacki1',
+  # 'device' => '8795',
+  # 'number' => '516540467',
+  # 'message' => 'lubię test' }.to_json, :content_type => :json, :accept => :json
   end
 
   # GET /contacts/new
@@ -36,6 +43,21 @@ class ContactsController < ApplicationController
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def send_sms
+  end
+
+  def sms_sender
+    require 'rest-client'
+    @contact = Contact.find(params[:id])
+    response = RestClient.post "smsgateway.me/api/v3/messages/send", { 'email' => 'wojtark@vp.pl',
+    'password' => 'lubieplacki1',
+    'device' => '8795',
+    'number' => @contact.phone_number,
+    'message' => params[:message] }.to_json, :content_type => :json, :accept => :json
+    response.code
+    redirect_to contacts_url
   end
 
   # PATCH/PUT /contacts/1
@@ -70,6 +92,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone_number)
+      params.require(:contact).permit(:first_name, :last_name, :email, :phone_number, :message)
     end
 end
