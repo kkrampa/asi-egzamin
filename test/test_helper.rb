@@ -1,0 +1,2 @@
+class TestHelper
+end
