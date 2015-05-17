@@ -11,13 +11,6 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
-  #   require 'rest-client'
-  #
-  #   RestClient.post "smsgateway.me/api/v3/messages/send", { 'email' => 'wojtark@vp.pl',
-  # 'password' => 'lubieplacki1',
-  # 'device' => '8795',
-  # 'number' => '516540467',
-  # 'message' => 'lubię test' }.to_json, :content_type => :json, :accept => :json
   end
 
   # GET /contacts/new
