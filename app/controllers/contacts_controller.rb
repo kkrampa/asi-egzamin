@@ -1,10 +1,11 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.where(:user_id => current_user.id)
   end
 
   # GET /contacts/1
@@ -25,7 +26,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
+    @contact.user = current_user
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, flash: {success: 'Contact was successfully created.'} }

@@ -4,4 +4,5 @@ class Contact < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
   validates :first_name, presence: true
   validates :last_name, presence: true
+  belongs_to :user
 end
