@@ -19,4 +19,8 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Password reset"
   end
+
+  def email_to_contact(contact, from, subject, text)
+    mail :content_type => 'text/html', :to => contact.email, :body => text, :subject => subject, :from => from
+  end
 end

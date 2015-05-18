@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy, :send_sms]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy, :send_sms, :create_email, :send_email]
   before_action :logged_in_user
 
   # GET /contacts
@@ -75,6 +75,15 @@ class ContactsController < ApplicationController
       format.html { redirect_to contacts_url, flash: {success: 'Contact was successfully destroyed.'} }
       format.json { head :no_content }
     end
+  end
+
+  def create_email
+
+  end
+
+  def send_email
+    UserMailer.email_to_contact(@contact, current_user.email, params[:subject], params[:message]).deliver_now
+    redirect_to contacts_url, flash: { success: 'Email was sent successfully' }
   end
 
   private
