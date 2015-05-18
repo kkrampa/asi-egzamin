@@ -6,6 +6,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.where(:user_id => current_user.id)
+    @config = Config.find_by_user_id(current_user.id)
   end
 
   # GET /contacts/1
@@ -44,13 +45,24 @@ class ContactsController < ApplicationController
   def sms_sender
     require 'rest-client'
     @contact = Contact.find(params[:id])
-    response = RestClient.post "smsgateway.me/api/v3/messages/send", { 'email' => 'wojtark@vp.pl',
-    'password' => 'lubieplacki1',
-    'device' => '8795',
-    'number' => @contact.phone_number,
-    'message' => params[:message] }.to_json, :content_type => :json, :accept => :json
-    response.code
-    redirect_to contacts_url
+    config = Config.find_by_user_id(current_user.id)
+    success = false
+
+    if config and @contact.phone_number
+      sms_sender = SmsSender.new(config)
+      success = sms_sender.send_sms(@contact.phone_number, params[:message])
+    end
+
+    unless success
+      flash = {
+          error: 'SMS was not send due to error'
+      }
+    else
+      flash = {
+          success: 'Message was sent successfully'
+      }
+    end
+    redirect_to contacts_path, flash: flash
   end
 
   # PATCH/PUT /contacts/1
