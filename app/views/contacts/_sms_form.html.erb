@@ -1,0 +1,9 @@
+<%= @contact.first_name %>
+<%= @contact.last_name %>
+<%= @contact.email %>
+<%= @contact.phone_number %>
+<%= form_for(:contact, url: sms_sender_contact_path) do |f| %>
+    <%= hidden_field_tag(:id, @contact.id) %>
+    <%= text_area_tag(:message, "", size: "24x6", :required => true, :placeholder => "Write message text here", :maxlength => 300) %>
+    <%= f.submit  "Send"%>
+<% end %>
