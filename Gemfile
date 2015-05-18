@@ -17,6 +17,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap_form'
 gem 'rest-client', '~> 1.8.0'
+gem 'oauth2'
+gem 'google_contacts_api'
 
 group :development, :test do
   gem 'sqlite3'
