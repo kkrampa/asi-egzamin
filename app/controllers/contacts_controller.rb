@@ -1,4 +1,3 @@
-require 'google/api_client'
 require 'google_contacts_api'
 
 class ContactsController < ApplicationController
