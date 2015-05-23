@@ -1,3 +1,5 @@
+require 'google_contacts_api'
+
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy, :send_sms]
   before_action :logged_in_user
@@ -77,6 +79,37 @@ class ContactsController < ApplicationController
     end
   end
 
+  def import
+
+    client = OAuth2::Client.new(CLIENT_ID, CLIENT_SECRET,
+                                site: 'https://accounts.google.com',
+                                token_url: '/o/oauth2/token',
+                                authorize_url: '/o/oauth2/auth')
+    if params[:code] != nil
+      token = client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URI)
+      google_contacts_user = GoogleContactsApi::User.new(token)
+      google_contacts_user.contacts.each { |google_contact|
+        phone_number = google_contact.phone_numbers.first
+        email = google_contact.primary_email
+        unless Contact.find_by_email_and_phone_number_and_user_id(email, phone_number, current_user.id)
+          contact = Contact.new
+          contact.name = google_contact.full_name || 'Unknown'
+          contact.email = email
+          contact.phone_number = phone_number
+          contact.user = current_user
+          contact.save
+        end
+
+      }
+      redirect_to contacts_url, flash: { success: 'Contacts imported successfully'}
+    else
+      url = client.auth_code.authorize_url(scope: 'https://www.google.com/m8/feeds',
+                                           redirect_uri: REDIRECT_URI)
+      redirect_to url
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
@@ -85,6 +118,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :email, :phone_number, :message)
+      params.require(:contact).permit(:name, :email, :phone_number, :message)
     end
 end

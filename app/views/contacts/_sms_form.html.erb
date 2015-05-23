@@ -1,5 +1,4 @@
-<%= @contact.first_name %>
-<%= @contact.last_name %>
+<%= @contact.name %>
 <%= @contact.email %>
 <%= @contact.phone_number %>
 <%= form_for(:contact, url: sms_sender_contact_path) do |f| %>

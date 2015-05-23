@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get "contacts/:id/send_sms" => 'contacts#send_sms', :as => "send_sms_contact"
   post "contacts/sms_sender" => 'contacts#sms_sender', :as => "sms_sender_contact"
+
+  get 'contacts/import' => 'contacts#import', :as => 'import_contacts'
+
   resources :contacts
   resources :users
   resources :account_activations, only: [:edit]
