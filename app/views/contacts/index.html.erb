@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Phone number</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -18,8 +18,12 @@
         <td><%= contact.phone_number %></td>
         <td><%= link_to 'Show', contact %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td>
+            <% if !config.empty? and contact.phone_number %>
+                <%= link_to 'Send SMS', send_sms_contact_path(contact) %>
+            <% end %>
+        </td>
 
-        <td><%= link_to 'Send SMS', send_sms_contact_path(contact) %></td>
         <td>
           <% if contact.email %>
             <%= link_to 'Send email', create_email_contact_path(contact) %>
