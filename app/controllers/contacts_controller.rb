@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.where(:user_id => current_user.id)
-    @config = Config.find_by_user_id(current_user.id)
+    @sms_config = Config.find_by_user_id(current_user.id)
   end
 
   # GET /contacts/1

@@ -19,7 +19,7 @@
         <td><%= link_to 'Show', contact %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
         <td>
-            <% if !config.empty? and contact.phone_number %>
+            <% if @sms_config and contact.phone_number %>
                 <%= link_to 'Send SMS', send_sms_contact_path(contact) %>
             <% end %>
         </td>
