@@ -55,13 +55,13 @@ class ContactsController < ApplicationController
       success = sms_sender.send_sms(@contact.phone_number, params[:message])
     end
 
-    unless success
+    if success
       flash = {
-          error: 'SMS was not send due to error'
+          success: 'Message was sent successfully'
       }
     else
       flash = {
-          success: 'Message was sent successfully'
+          danger: 'SMS was not send due to error'
       }
     end
     redirect_to contacts_path, flash: flash
