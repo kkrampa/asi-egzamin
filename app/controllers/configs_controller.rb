@@ -7,8 +7,9 @@ class ConfigsController < ApplicationController
 
   # GET /configs/new
   def new
-    if Config.find_by_user_id(current_user.id)
-      redirect_to edit_config_url
+    config = Config.find_by_user_id(current_user.id)
+    if config
+      redirect_to edit_config_url(config.id)
     else
       @config = Config.new
     end
