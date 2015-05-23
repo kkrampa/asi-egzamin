@@ -18,10 +18,12 @@
         <td><%= contact.phone_number %></td>
         <td><%= link_to 'Show', contact %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+
+        <td><%= link_to 'Send SMS', send_sms_contact_path(contact) %></td>
         <td>
-            <% if contact.phone_number and config %>
-                <%= link_to 'Send SMS', send_sms_contact_path(contact) %>
-            <% end %>
+          <% if contact.email %>
+            <%= link_to 'Send email', create_email_contact_path(contact) %>
+          <% end %>
         </td>
         <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
