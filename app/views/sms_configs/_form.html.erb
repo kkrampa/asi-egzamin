@@ -1,0 +1,6 @@
+<%= bootstrap_form_for(@sms_config) do |f| %>
+    <%= f.text_field :email %>
+    <%= f.text_field :password %>
+    <%= f.number_field :device %>
+    <%= f.submit %>
+<% end %>

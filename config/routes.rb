@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sms_configs
   get 'password_resets/new'
   get 'password_resets/edit'
   root                'static_pages#home'
@@ -11,6 +12,11 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get "contacts/:id/send_sms" => 'contacts#send_sms', :as => "send_sms_contact"
   post "contacts/sms_sender" => 'contacts#sms_sender', :as => "sms_sender_contact"
+
+  get 'contacts/import' => 'contacts#import', :as => 'import_contacts'
+  get 'contacts/:id/create_email' => 'contacts#create_email', :as => 'create_email_contact'
+  post 'contacts/:id/send_email' => 'contacts#send_email', :as => 'send_email_contact'
+
   resources :contacts
   resources :users
   resources :account_activations, only: [:edit]

@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @sms_config.email %>
+</p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @sms_config.device %>
+</p>
+
+<%= link_to 'Edit', edit_sms_config_path(@sms_config) %> |
