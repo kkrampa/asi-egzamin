@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :configs
+  resources :sms_configs
   get 'password_resets/new'
   get 'password_resets/edit'
   root                'static_pages#home'

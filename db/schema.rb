@@ -11,18 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518200644) do
-
-  create_table "configs", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password"
-    t.integer  "device"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "configs", ["user_id"], name: "index_configs_on_user_id"
+ActiveRecord::Schema.define(version: 20150524110749) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "email"
@@ -34,6 +23,17 @@ ActiveRecord::Schema.define(version: 20150518200644) do
   end
 
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"
+
+  create_table "sms_configs", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password"
+    t.integer  "device"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sms_configs", ["user_id"], name: "index_sms_configs_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

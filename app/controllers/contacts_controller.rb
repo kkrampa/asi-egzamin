@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.where(:user_id => current_user.id)
-    @sms_config = Config.find_by_user_id(current_user.id)
+    @sms_config = SmsConfig.find_by_user_id(current_user.id)
   end
 
   # GET /contacts/1
@@ -47,7 +47,7 @@ class ContactsController < ApplicationController
   def sms_sender
     require 'rest-client'
     @contact = Contact.find(params[:id])
-    config = Config.find_by_user_id(current_user.id)
+    config = SmsConfig.find_by_user_id(current_user.id)
     success = false
 
     if config and @contact.phone_number
@@ -100,7 +100,8 @@ class ContactsController < ApplicationController
     if params[:code] != nil
       token = client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URI)
       google_contacts_user = GoogleContactsApi::User.new(token)
-      google_contacts_user.contacts.each { |google_contact|
+      contacts = google_contacts_user.contacts.to_a.sort_by{|x| x.full_name or 'Unknown'}
+      contacts.each { |google_contact|
         phone_number = google_contact.phone_numbers.first
         email = google_contact.primary_email
         unless Contact.find_by_email_and_phone_number_and_user_id(email, phone_number, current_user.id)
