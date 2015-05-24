@@ -92,13 +92,12 @@ class ContactsController < ApplicationController
   end
 
   def import
-
     client = OAuth2::Client.new(CLIENT_ID, CLIENT_SECRET,
                                 site: 'https://accounts.google.com',
                                 token_url: '/o/oauth2/token',
                                 authorize_url: '/o/oauth2/auth')
     if params[:code] != nil
-      token = client.auth_code.get_token(params[:code], :redirect_uri => REDIRECT_URI)
+      token = client.auth_code.get_token(params[:code], :redirect_uri => import_contacts_url)
       google_contacts_user = GoogleContactsApi::User.new(token)
       contacts = google_contacts_user.contacts.to_a.sort_by{|x| x.full_name or 'Unknown'}
       contacts.each { |google_contact|
@@ -117,7 +116,7 @@ class ContactsController < ApplicationController
       redirect_to contacts_url, flash: { success: 'Contacts imported successfully'}
     else
       url = client.auth_code.authorize_url(scope: 'https://www.google.com/m8/feeds',
-                                           redirect_uri: REDIRECT_URI)
+                                           redirect_uri: import_contacts_url)
       redirect_to url
     end
   end
