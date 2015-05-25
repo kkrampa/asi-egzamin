@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   get "contacts/:id/send_sms" => 'contacts#send_sms', :as => "send_sms_contact"
   post "contacts/sms_sender" => 'contacts#sms_sender', :as => "sms_sender_contact"
 
+  get 'contacts/:id/export' => 'contacts#export_vcf', :as => 'export_contacts'
   get 'contacts/import' => 'contacts#import', :as => 'import_contacts'
   get 'contacts/:id/create_email' => 'contacts#create_email', :as => 'create_email_contact'
   post 'contacts/:id/send_email' => 'contacts#send_email', :as => 'send_email_contact'
+
 
   resources :contacts
   resources :users

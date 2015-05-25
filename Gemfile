@@ -19,6 +19,7 @@ gem 'bootstrap_form'
 gem 'rest-client', '~> 1.8.0'
 gem 'oauth2'
 gem 'google_contacts_api'
+gem 'vpim'
 
 group :development, :test do
   gem 'sqlite3'

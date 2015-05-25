@@ -1,7 +1,8 @@
 require 'google_contacts_api'
+require 'vpim/vcard'
 
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy, :send_sms, :create_email, :send_email]
+  before_action :set_contact, only: [:show, :edit, :update, :destroy, :send_sms, :create_email, :send_email, :export_vcf]
   before_action :logged_in_user
 
   # GET /contacts
@@ -128,6 +129,32 @@ class ContactsController < ApplicationController
   def send_email
     UserMailer.email_to_contact(@contact, current_user.email, params[:subject], params[:message]).deliver_now
     redirect_to contacts_url, flash: { success: 'Email was sent successfully' }
+  end
+
+  def export_vcf
+    card = Vpim::Vcard::Maker.make2 do |maker|
+
+      maker.add_email(@contact.email)
+      maker.add_name do |name|
+        splitted = @contact.name.split
+        name.prefix = ''
+        if splitted.size == 1
+          name.family = splitted[0]
+        end
+
+        if splitted.size == 2
+          name.given = splitted[0]
+          name.family = splitted[1]
+        end
+      end
+
+      if @contact.phone_number
+        maker.add_tel(@contact.phone_number) { |e| e.location = 'work'}
+      end
+
+    end
+
+    send_data card.to_s, :type => 'text/x-vcard', :filename => @contact.name + '.vcf'
   end
 
   private
