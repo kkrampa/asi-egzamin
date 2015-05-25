@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.where(:user_id => current_user.id)
+    @contacts = Contact.paginate(page: params[:page], :per_page =>20).where(:user_id => current_user.id).search(params[:search])
     @sms_config = SmsConfig.find_by_user_id(current_user.id)
   end
 
