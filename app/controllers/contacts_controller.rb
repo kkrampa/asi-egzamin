@@ -116,8 +116,9 @@ class ContactsController < ApplicationController
       }
       redirect_to contacts_url, flash: { success: t('imported_successfully')}
     else
+      puts import_contacts_url
       url = client.auth_code.authorize_url(scope: 'https://www.google.com/m8/feeds',
-                                           redirect_uri: import_contacts_url)
+                                           redirect_uri: 'https://salty-brook-9086.herokuapp.com/pl/contacts/import')
       redirect_to url
     end
   end
