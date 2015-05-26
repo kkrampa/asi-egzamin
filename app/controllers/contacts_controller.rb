@@ -98,7 +98,7 @@ class ContactsController < ApplicationController
                                 token_url: '/o/oauth2/token',
                                 authorize_url: '/o/oauth2/auth')
     if params[:code] != nil
-      token = client.auth_code.get_token(params[:code], :redirect_uri => import_contacts_url)
+      token = client.auth_code.get_token(params[:code], :redirect_uri => 'https://salty-brook-9086.herokuapp.com/pl/contacts/import')
       google_contacts_user = GoogleContactsApi::User.new(token)
       contacts = google_contacts_user.contacts.to_a.sort_by{|x| x.full_name or t('unknown')}
       contacts.each { |google_contact|
