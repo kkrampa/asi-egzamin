@@ -1,29 +1,32 @@
 Rails.application.routes.draw do
-  resources :sms_configs
-  get 'password_resets/new'
-  get 'password_resets/edit'
-  root                'static_pages#home'
-  get    'help'    => 'static_pages#help'
-  get    'about'   => 'static_pages#about'
-  get    'contact_info' => 'static_pages#contact_info'
-  get    'signup'  => 'users#new'
-  get    'login'   => 'sessions#new'
-  post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
-  get "contacts/:id/send_sms" => 'contacts#send_sms', :as => "send_sms_contact"
-  post "contacts/sms_sender" => 'contacts#sms_sender', :as => "sms_sender_contact"
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    root to: 'static_pages#home'
+    resources :sms_configs
+    get 'password_resets/new'
+    get 'password_resets/edit'
+    get    'help'    => 'static_pages#help'
+    get    'about'   => 'static_pages#about'
+    get    'contact_info' => 'static_pages#contact_info'
+    get    'signup'  => 'users#new'
+    get    'login'   => 'sessions#new'
+    post   'login'   => 'sessions#create'
+    delete 'logout'  => 'sessions#destroy'
+    get 'contacts/:id/send_sms' => 'contacts#send_sms', :as => 'send_sms_contact'
+    post 'contacts/sms_sender' => 'contacts#sms_sender', :as => 'sms_sender_contact'
 
-  get 'contacts/:id/export' => 'contacts#export_vcf', :as => 'export_contacts'
-  get 'contacts/import' => 'contacts#import', :as => 'import_contacts'
-  get 'contacts/:id/create_email' => 'contacts#create_email', :as => 'create_email_contact'
-  post 'contacts/:id/send_email' => 'contacts#send_email', :as => 'send_email_contact'
+    get 'contacts/:id/export' => 'contacts#export_vcf', :as => 'export_contacts'
+    get 'contacts/import' => 'contacts#import', :as => 'import_contacts'
+    get 'contacts/:id/create_email' => 'contacts#create_email', :as => 'create_email_contact'
+    post 'contacts/:id/send_email' => 'contacts#send_email', :as => 'send_email_contact'
 
 
-  resources :contacts
-  resources :users
-  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
-
+    resources :contacts
+    resources :users
+    resources :account_activations, only: [:edit]
+    resources :password_resets,     only: [:new, :create, :edit, :update]
+end
+get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+get '', to: redirect("/#{I18n.default_locale}/")
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

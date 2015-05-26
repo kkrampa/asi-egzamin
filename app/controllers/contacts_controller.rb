@@ -33,7 +33,7 @@ class ContactsController < ApplicationController
     @contact.user = current_user
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, flash: {success: 'Contact was successfully created.'} }
+        format.html { redirect_to @contact, flash: {success: t('contact_successfully_created')} }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -58,11 +58,11 @@ class ContactsController < ApplicationController
 
     if success
       flash = {
-          success: 'Message was sent successfully'
+          success: t('message_sent')
       }
     else
       flash = {
-          danger: 'SMS was not send due to error'
+          danger: t('sms_not_sent')
       }
     end
     redirect_to contacts_path, flash: flash
@@ -73,7 +73,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, flash: {success: 'Contact was successfully updated.' } }
+        format.html { redirect_to @contact, flash: {success: t('contact_updated') } }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }
@@ -87,7 +87,7 @@ class ContactsController < ApplicationController
   def destroy
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, flash: {success: 'Contact was successfully destroyed.'} }
+      format.html { redirect_to contacts_url, flash: {success: t('contact_destroyed')} }
       format.json { head :no_content }
     end
   end
@@ -100,13 +100,13 @@ class ContactsController < ApplicationController
     if params[:code] != nil
       token = client.auth_code.get_token(params[:code], :redirect_uri => import_contacts_url)
       google_contacts_user = GoogleContactsApi::User.new(token)
-      contacts = google_contacts_user.contacts.to_a.sort_by{|x| x.full_name or 'Unknown'}
+      contacts = google_contacts_user.contacts.to_a.sort_by{|x| x.full_name or t('unknown')}
       contacts.each { |google_contact|
         phone_number = google_contact.phone_numbers.first
         email = google_contact.primary_email
         unless Contact.find_by_email_and_phone_number_and_user_id(email, phone_number, current_user.id)
           contact = Contact.new
-          contact.name = google_contact.full_name || 'Unknown'
+          contact.name = google_contact.full_name || t('unknown')
           contact.email = email
           contact.phone_number = phone_number
           contact.user = current_user
@@ -114,7 +114,7 @@ class ContactsController < ApplicationController
         end
 
       }
-      redirect_to contacts_url, flash: { success: 'Contacts imported successfully'}
+      redirect_to contacts_url, flash: { success: t('imported_successfully')}
     else
       url = client.auth_code.authorize_url(scope: 'https://www.google.com/m8/feeds',
                                            redirect_uri: import_contacts_url)
@@ -128,7 +128,7 @@ class ContactsController < ApplicationController
 
   def send_email
     UserMailer.email_to_contact(@contact, current_user.email, params[:subject], params[:message]).deliver_now
-    redirect_to contacts_url, flash: { success: 'Email was sent successfully' }
+    redirect_to contacts_url, flash: { success: t('email_sent') }
   end
 
   def export_vcf

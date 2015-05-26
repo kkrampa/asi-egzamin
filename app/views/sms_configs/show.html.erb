@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Device:</strong>
+  <strong><%= t('device') %>:</strong>
   <%= @sms_config.device %>
 </p>
 
-<%= link_to 'Edit', edit_sms_config_path(@sms_config) %> |
+<%= link_to t('edit'), edit_sms_config_path(@sms_config) %> |

@@ -20,6 +20,7 @@ gem 'rest-client', '~> 1.8.0'
 gem 'oauth2'
 gem 'google_contacts_api'
 gem 'vpim'
+gem 'rails-i18n', '~> 4.0.0' 
 
 group :development, :test do
   gem 'sqlite3'

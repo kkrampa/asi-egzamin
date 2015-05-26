@@ -3,7 +3,7 @@
 <%= @contact.phone_number %>
 <%= bootstrap_form_tag url: send_email_contact_path do |f| %>
     <%= f.hidden_field(:id, value: @contact.id) %>
-    <%= f.text_field :subject  %>
-    <%= f.text_area(:message, size: '24x6', :required => true, :placeholder => 'Write message text here', :maxlength => 300) %>
-    <%= f.submit  'Send' %>
+    <%= f.text_field :subject , label: t('subject')  %>
+    <%= f.text_area(:message, :label => t('message'), size: '24x6', :required => true, :placeholder => t('contacts.placeholder'), :maxlength => 300) %>
+    <%= f.submit  t('submit') %>
 <% end %>

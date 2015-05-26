@@ -26,7 +26,7 @@ class SmsConfigsController < ApplicationController
     @sms_config.user = current_user
     respond_to do |format|
       if @sms_config.save
-        format.html { redirect_to @sms_config, notice: 'Config was successfully created.' }
+        format.html { redirect_to @sms_config, notice: t('config_created') }
         format.json { render :show, status: :created, location: @sms_config }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class SmsConfigsController < ApplicationController
     @sms_config.user = current_user
     respond_to do |format|
       if @sms_config.update(config_params)
-        format.html { redirect_to @sms_config, notice: 'Config was successfully updated.' }
+        format.html { redirect_to @sms_config, notice: t('config_updated') }
         format.json { render :show, status: :ok, location: @sms_config }
       else
         format.html { render :edit }

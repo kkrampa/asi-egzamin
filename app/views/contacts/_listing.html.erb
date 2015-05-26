@@ -1,10 +1,10 @@
 <table class="table table-bordered">
   <thead>
   <tr>
-    <th>Name</th>
+    <th><%= t('name') %> </th>
     <th>Email</th>
-    <th>Phone number</th>
-    <th>Actions</th>
+    <th><%= t('phone_number') %> </th>
+    <th><%= t('options') %> </th>
   </tr>
   </thead>
 
@@ -15,16 +15,16 @@
         <td><%= contact.email %></td>
         <td><%= contact.phone_number %></td>
         <td>
-            <%= link_to 'Show', contact, :class => 'btn btn-default' %>
-            <%= link_to 'Edit', edit_contact_path(contact), :class => 'btn btn-default' %>
+            <%= link_to t('show'), contact, :class => 'btn btn-default' %>
+            <%= link_to t('edit'), edit_contact_path(contact), :class => 'btn btn-default' %>
             <% if @sms_config and contact.phone_number %>
-              <%= link_to 'Send SMS', send_sms_contact_path(contact), :class => 'btn btn-default' %>
+              <%= link_to t('send_sms'), send_sms_contact_path(contact), :class => 'btn btn-default' %>
             <% end %>
             <% if contact.email %>
-              <%= link_to 'Send email', create_email_contact_path(contact), :class => 'btn btn-default' %>
+              <%= link_to t('send_email'), create_email_contact_path(contact), :class => 'btn btn-default' %>
             <% end %>
-            <%= link_to 'Export as vcard', export_contacts_path(contact), :class => 'btn btn-default' %>
-            <%= link_to 'Destroy', contact, :class => 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to t('export_vcard'), export_contacts_path(contact), :class => 'btn btn-default' %>
+            <%= link_to t('destroy'), contact, :class => 'btn btn-default', method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
   <% end %>

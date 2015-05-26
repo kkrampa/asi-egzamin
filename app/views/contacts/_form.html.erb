@@ -1,6 +1,6 @@
 <%= bootstrap_form_for(@contact) do |f| %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, label: t('name') %>
     <%= f.text_field :email %>
-    <%= f.text_field :phone_number %>
-    <%= f.submit %>
+    <%= f.text_field :phone_number, label: t('phone_number') %>
+    <%= f.submit t('submit') %>
 <% end %>

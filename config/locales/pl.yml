@@ -1,0 +1,90 @@
+pl:
+  submit: "Wyślij"
+  contacts:
+    placeholder: "Wpisz tekst wiadomości"
+  name: "Nazwa"
+  phone_number: "Numer telefonu"
+  options: "Opcje"
+  show: 'Pokaż'
+  send_sms: 'Wyslij SMS'
+  edit: 'Edytuj'
+  send_email: 'Wyślij email'
+  export_vcard: 'EKsportuj jako vcard'
+  destroy: 'Usuń'
+  back: 'Wstecz'
+  show_contact: 'Pokaż kontakt'
+  search: 'Wyszukaj'
+  show_all: 'Pokaż wszystkich'
+  new_contact: 'Nowy kontakt'
+  about: 'O aplikacji'
+  contact: 'Kontakt'
+  home: 'Strona główna'
+  users: 'Użytkownicy'
+  contacts: "Kontakty"
+  setup_sms: 'Ustaw bramkę SMS'
+  profile: 'Profil'
+  edit_profile: 'Edytuj profil'
+  log_out: 'Wyloguj'
+  sign_in: 'Zaloguj'
+  account: 'Konto'
+  lang: 'Język'
+  confirm_pass: 'Potwierdź hasło'
+  update_pass: 'Zmień hasło'
+  forgot_pass: 'zapomniałem hasło'
+  remember_me: 'Zapamiętaj mnie na tym komputerze'
+  sign_up_here: 'Zarejestruj się teraz!'
+  dont_have_account: "Nie masz jeszcze konta?"
+  form_contains: 'Formularz zawiera '
+  show_my_profile: 'Pokaż mój profil'
+  device: 'Urządzenie'
+  welcome_to_the: 'Witaj w aplikacji'
+  about: 'O aplikacji'
+  activate: 'Aktywuj'
+  activate_email: 'Witaj w aplikacji Kontakt! Kliknij w poniższy link, aby aktywować swoje konto:'
+  hi: 'Witaj'
+  pass_reset: 'Resetowanie hasła'
+  to_reset: 'Kliknij w poniższy link, aby zresetować hasło:'
+  reset_pass: 'Zresetuj hasło'
+  link_expire: 'Link wygaśnie w ciągu dwóch godzin.'
+  ignore_email: 'Jeśli nie wnioskowałeś o zmianę hasła zignoruj ten email. Twoje hasło pozostanie niezmienienione..'
+  delete: 'usuń'
+  you_sure: 'Na pewno?'
+  save_changes: 'Zapisz zmiany'
+  change: 'zmień'
+  edit_user: 'Edytuj użytkownika'
+  update_your_profile: 'Zmień swój profil'
+  users: 'Użytkownicy'
+  sign_up: 'Zarejestruj'
+  create_my_account: 'Stwórz konto'
+  account_activated: 'Konto aktywowane!'
+  invalid_activation_link: 'Niepoprawny link aktywacyjny'
+  editing_config: 'Edycja konfiguracji'
+  edit_contact: 'Edycja kontaktu'
+  new_config: "Nowa konfiguracja"
+  please_sign_in: 'Zaloguj się.'
+  contact_successfully_created: 'Kontakt został pomyślnie utworzony.'
+  message_sent: 'Wiadomość została pomyślnie wysłana'
+  sms_not_sent: 'Wiadomość SMS nie została wysłana z powodu błędu'
+  contact_updated: 'Kontakt został zaktualizowany.'
+  contact_destroyed: 'KOntakt został usunięty.'
+  unknown: 'Nieznany'
+  imported_successfully: 'KOntakty zostały zaimportowane'
+  email_sent: 'Email został wysłany'
+  email_reset_instructions: 'Email z instukcjami zmiany hasła został wysłany'
+  email_not_found: 'Adres email nie został znaleziony'
+  blank_pass: "Hasło nie może być puste"
+  pass_has_been_reset: "Hasło zostało zresetowane."
+  pass_reset_expired: "Link wygasł."
+  not_activated: "Konto nie zostało aktywowane. "
+  check_email: "Sprawdź czy w twojej skrzynce email znajduje się mail z linkiem aktywacyjnym."
+  please_check_email: "Sprawdź czy w twojej skrzynce email znajduje się mail z linkiem aktywacyjnym."
+  invalid_signin: 'Niepoprawne dane logowania'
+  config_created: 'Konfiguracja została stworzona.'
+  config_updated: 'Konfiguracja została pomyślnie zmieniona.'
+  user_updated: "Użytkownik zaktualizowany"
+  user_deleted: "Użytkownik usunięty"
+  import_contacts: 'Zaimportuj kontakty z Google API'
+  subject: 'Temat'
+  message: 'Treść'
+  password: 'Hasło'
+  password_confirmation: "Powtórz hasło"
