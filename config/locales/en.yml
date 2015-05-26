@@ -110,3 +110,33 @@ en:
   message: "Message"
   password: "Password"
   password_confirmation: "Password confirmation"
+  about_content: "<b>Kontakt is an great app that allows you to stay in touch with friends wherever you are!
+  <br>
+  <h3>
+  Main features:
+    </h3>
+  <ul>
+    <li>Importing contacts from Google.</li>
+    <li>Sedning SMSes.</li>
+    <li>Sending e-mails.</li>
+    <li>Adding your own contats.</li>
+  </ul>
+
+  Want learn more?</b>"
+  contact_content: "Feel free to contact our support with any problem! <br>
+  Just <a href='mailto:marekwstrzala@gmail.com'>click this link</a>."
+  faq_content: "<h3>
+  Frequenly asked questions:
+    </h3>
+    <ol>
+    <li>
+    How to enable SMS gateway?<br><br>
+    It's very simple. You should make just few steps:
+  <ul>
+    <li>Register on <a href='https://smsgateway.me' target='_blank'>SMS Gateway</a></li>
+    <li>Install <a href='https://play.google.com/store/apps/details?id=networked.solutions.sms.gateway.api' target='_blank'>client application</a> on your Android device.</li>
+    <li>Fill credentials on our site.</li>
+    <li>Yes! That's all!</li>
+  </ul>
+  </ol>"
+  welcome_text: ""
