@@ -54,7 +54,6 @@ class ContactsController < ApplicationController
     if config and @contact.phone_number
       sms_sender = SmsSender.new(config)
       success = sms_sender.send_sms(@contact.phone_number, params[:message])
-      puts config.password
     end
 
     if success
