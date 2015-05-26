@@ -1,4 +1,4 @@
-# Kontakt
+# Kontakt by BonaFide
 
 ### Opis
 
@@ -20,6 +20,7 @@ Aplikacja działa w sposób intuicyjny. W razie problemów można skorzystać z 
 - wysyłanie wiadomości e-mail
 - wysyłanie SMSów
 - eksport kontaków do formatu wizytówek (vCard)
+- wielojęzyczność
 - walidacja danych pobieranych od użytkownika
 
 ### Heroku
@@ -33,6 +34,6 @@ hasło: test123
 ```
 
 ### Autorzy
-
+BonaFide:
 - Kamil Krampa
 - Marek Strzała
