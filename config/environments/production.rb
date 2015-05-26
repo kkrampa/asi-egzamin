@@ -67,7 +67,6 @@ Rails.application.configure do
   host = 'salty-brook-9086.herokuapp.com'
   config.action_mailer.default_url_options = { :host => host, :locale => I18n.locale }
 
-  config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
